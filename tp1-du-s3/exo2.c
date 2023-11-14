@@ -192,15 +192,18 @@ int main()
     int choix;
     do
     {
-        printf("Menu de tri :\n");
-        printf("1. Tri par selection\n");
-        printf("2. Tri par insertion\n");
-        printf("3. Tri fusion\n");
-        printf("4. Tri rapide\n");
-        printf("5. Tri a bulles\n");
-        printf("6. Exécuter tous les tris\n");
-        printf("0. Quitter\n");
-        printf("Faites votre choix : ");
+        printf("|==========================Menu==========================|");
+        printf("\n|| Taper 1 pour le trie par Selection                   ||");
+        printf("\n|| Taper 2 pour le trie par insertion                   ||");
+        printf("\n|| Taper 3 pour le trie par fusion                      ||");
+        printf("\n|| Taper 4 pour le trie rapide                          ||");
+        printf("\n|| Taper 5 pour le trie a bulles                        ||");
+        printf("\n|| Taper 6 pour tabppeler toutes les fonctions de tri   ||");
+        printf("\n|| Taper 7 pour creation du fichier csv                 ||");
+        printf("\n|| Taper 8 pour generer les graphique                   ||");
+        printf("\n|| Taper 0 pour quitter                                 ||\n");
+        printf("----------------------------------------------------------\n");
+        printf("-Votre choix : ");
         scanf("%d", &choix);
         switch (choix)
         {
@@ -217,7 +220,7 @@ int main()
 
             printf("Temps d'execution 1 : %f secondes\n", temps_execution);
 
-            // affiche(tab1, taille);
+            affiche(tab1, taille);
             break;
         case 2:
 
@@ -232,7 +235,7 @@ int main()
 
             printf("Temps d'execution 2: %f secondes\n", temps_execution2);
 
-            //  affiche(tab2, taille);
+            affiche(tab2, taille);
             break;
         case 3:
             // appeler la fonction de tri fusion
@@ -246,7 +249,7 @@ int main()
 
             printf("Temps d'execution 3 : %f secondes\n", temps_execution3);
 
-            //  affiche(tab3, taille);
+            affiche(tab3, taille);
             break;
         case 4:
             // appeler la fonction de tri rapide
@@ -261,7 +264,7 @@ int main()
 
             printf("Temps d'execution 4 : %f secondes\n", temps_execution4);
 
-            // affiche(tab4, taille);
+            affiche(tab4, taille);
             break;
         case 5:
             // tappeler la fonction de tri à bulles
@@ -275,7 +278,7 @@ int main()
 
             printf("Temps d'execution 5 : %f secondes\n", temps_execution5);
 
-            // affiche(tab5, taille);
+            affiche(tab5, taille);
             break;
         case 6:
             // tabppeler toutes les fonctions de tri
@@ -443,32 +446,7 @@ int main()
             {
                 perror("Erreur lors de l'ouverture de GNUplot");
             }
-            choix = 9;
             break;
-        case 9:
-            gnuplotPipe = popen("gnuplot -persistent", "w");
-            if (gnuplotPipe != NULL)
-            {
-                // Charger le fichier CSV et tracer les données
-                fprintf(gnuplotPipe, "set terminal png\n");
-                fprintf(gnuplotPipe, "set output 'donnee10s.png'\n");
-                fprintf(gnuplotPipe, "set datafile separator ','\n");
-                fprintf(gnuplotPipe, "set title 'Temps exécution des algorithmes de tri'\n");
-                fprintf(gnuplotPipe, "set xlabel 'Taille du tableau'\n");
-                fprintf(gnuplotPipe, "set ylabel 'Temps exécution (s)'\n");
-                fprintf(gnuplotPipe, "set key top left\n");
-                fprintf(gnuplotPipe, "set grid\n");
-                fprintf(gnuplotPipe, "plot 'donnees2.csv' using 1:4 with linespoints title 'MergeSort', \
-                                           'donnees2.csv' using 1:5 with linespoints title  'QuickeSort', \n");
-
-                // Fermer le processus GNUplot
-                pclose(gnuplotPipe);
-                printf("donnees2 ploter");
-            }
-            else
-            {
-                perror("Erreur lors de l'ouverture de GNUplot");
-            }
 
         case 0:
             printf("Programme terminé.\n");
@@ -478,5 +456,6 @@ int main()
         }
 
     } while (choix != 0);
+
     return 0;
 }
